@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FamilyMembersComponent } from './components/family-members/family-members.component';
 import { ShowpatientComponent } from './components/showpatient/showpatient.component';
+import { ShowMembersComponent } from './components/show-members/show-members.component';
 
 
 
@@ -20,6 +21,7 @@ import { ShowpatientComponent } from './components/showpatient/showpatient.compo
     PatientComponent,
     FamilyMembersComponent,
     ShowpatientComponent,
+    ShowMembersComponent,
    
   ],
   imports: [
