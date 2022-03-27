@@ -8,6 +8,7 @@ export class Patient {
     email: string = '';
     address: string = '';
     photos: string = "";
+  photosUri: any;
     constructor() {
 
     }

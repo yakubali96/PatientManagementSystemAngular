@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Patient } from '../patient/patient.model';
 
 @Component({
   selector: 'app-showpatient',
@@ -12,6 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 export class ShowpatientComponent implements OnInit {
 
   getPatient: any = [];
+  patients = new Patient();
+  isSave: boolean = true;
 
   patientName = "patientName";
 
@@ -48,6 +51,23 @@ export class ShowpatientComponent implements OnInit {
         })
     }
 
+  }
+  editPatient(item: any) {
+    console.log(item);
+
+    this.patients.id = item.id;
+    this.patients.patientName = item.patientName;
+    this.patients.gender = item.gender;
+    this.patients.age = item.age;
+    this.patients.dob = item.dob;
+    this.patients.phonNo = item.phonNo;
+    this.patients.email = item.email;
+    this.patients.address = item.address;
+    this.patients.photosUri = item.photosUri;
+    this.router.navigate(['/patient'], { state: { patient: item, isSave: false } })
+
+
+    console.log(this.patients)
   }
 
 }
