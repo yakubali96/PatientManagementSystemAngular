@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-showpatient',
@@ -14,7 +15,7 @@ export class ShowpatientComponent implements OnInit {
 
   patientName = "patientName";
 
-  constructor(private http: HttpClient,private router: Router) { }
+  constructor(private http: HttpClient,private router: Router,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getAllPatient();
@@ -36,8 +37,17 @@ export class ShowpatientComponent implements OnInit {
 
     })
   }
-  delete(){
-    
+  delete(patient: any) {
+    if (confirm(" Confirm delete")) {     
+      const headers = { 'content-Type': 'application/json' };
+      this.http.get("http://localhost:9094/deletePatient/" + patient.id, { headers: headers })
+        .subscribe(data => {
+          console.log(data);
+          this.getAllPatient();
+          this.toastr.warning("Patient delete");
+        })
+    }
+
   }
 
 }
